@@ -1,6 +1,3 @@
-# Whats the Cause of your Power Outage?
-by: Kaii Bijlani and Ketan Mittal
-
 DSC 80 Project: Investigating power outages and predicting their causes
 
 ## **Introduction**
