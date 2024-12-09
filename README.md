@@ -82,7 +82,7 @@ The following data cleaning steps were taken to prepare the dataset for analysis
 
 ### Univariate Analysis
 
-1. Power Outages by U.S. State (Folium Map)  
+- Power Outages by U.S. State (Folium Map)  
 
 The map below shows the frequency of power outages across different U.S. states. States such as Texas and California experience higher outage counts, likely due to larger populations, more extensive power grids, and increased vulnerability to extreme weather events like storms and wildfires. This visualization highlights regional disparities in power reliability across the country.  
 
@@ -91,7 +91,7 @@ The map below shows the frequency of power outages across different U.S. states.
 
 ---
 
-2. Power Outages by Cause (Histogram)  
+- Power Outages by Cause (Histogram)  
 
 The histogram below shows the frequency of power outages by cause category. Weather-related causes are the most common, underscoring the significant impact of natural events like storms, hurricanes, and wildfires on power reliability. Equipment failures are another major cause, reflecting aging infrastructure in certain regions. This distribution emphasizes the need for targeted improvements in infrastructure and disaster preparedness.  
 
@@ -101,7 +101,7 @@ The histogram below shows the frequency of power outages by cause category. Weat
 
 ### Bivariate Analysis
  
-1. Anomaly Level by Season (Violin Plot)  
+- Anomaly Level by Season (Violin Plot)  
 
 The violin plot below illustrates the distribution of `Anomaly Level` across different seasons. Fall and winter show a wider range of anomaly levels compared to summer and spring. This pattern indicates that extreme weather events such as winter storms and unpredictable fall weather contribute to greater variability in power outages during these seasons.  
 
@@ -110,7 +110,7 @@ The violin plot below illustrates the distribution of `Anomaly Level` across dif
 
 ---
 
-2. Outage Duration by Climate Region (Scatter Plot)  
+- Outage Duration by Climate Region (Scatter Plot)  
 
 The scatter plot above shows the relationship between `Climate Region` and `Outage Duration`. Outage durations vary significantly across regions, with some regions experiencing notably longer outages, such as the Northeast and West. This pattern may be influenced by extreme weather events or infrastructure challenges in these areas, highlighting the impact of regional environmental and structural factors on power outage severity. 
 
@@ -136,7 +136,7 @@ The column `outage.start` in a power outage dataframe could be **NMAR** (Not Mis
 
 ### Missingness Dependency
 
-1. Model 1: `CAUSE.CATEGORY.DETAIL` vs `U.S._STATE`
+- Model 1: `CAUSE.CATEGORY.DETAIL` vs `U.S._STATE`
 
 The missingness analysis for the `CAUSE.CATEGORY.DETAIL` with respect to `U.S._STATE` resulted in a p-value of `0.0`, indicating that the missingness pattern for this variable is **Missing at Random (MAR)**. This suggests that the missing cause category details can be related to the state, which is important for guiding the handling of missing values in subsequent analyses.
 
@@ -144,7 +144,7 @@ The missingness analysis for the `CAUSE.CATEGORY.DETAIL` with respect to `U.S._S
 <iframe src="assets/MAR1.html" width="100%" height="500" frameborder="0"></iframe>
 ---
 
-2. Model 2: `OUTAGE.DURATION` vs `MONTH`
+- Model 2: `OUTAGE.DURATION` vs `MONTH`
 
 For the `OUTAGE.DURATION` with respect to `MONTH`, the analysis produced a p-value of `0.606`, suggesting that the missingness of duration is not related to month. This result implies that the missingness is likely related to other unobserved factors, informing decisions about the assumptions and strategies for handling the missing data.
 
@@ -152,6 +152,50 @@ For the `OUTAGE.DURATION` with respect to `MONTH`, the analysis produced a p-val
 <iframe src="assets/MAR2.html" width="100%" height="500" frameborder="0"></iframe>
 
 ## Hypothesis Testing
+
+- Test #1
+
+Null Hypothesis ($H_0$) - The proportion of each cause category is uniformly distributed across each season, for each cause category.
+
+Alternative Hypothesis ($H_a$) - The proportion of each cause category is not uniformly distributed across each season, for each cause category.
+
+To evaluate the hypothesis, we used the Total Variation Distance (TVD) as the test statistic. TVD measures the difference between the observed and expected distributions of cause categories across seasons. The test compares how much the observed distribution deviates from the expected distribution under the assumption that the cause categories are uniformly distributed across seasons.
+
+We used a significance level of 0.05 for this hypothesis test. A significance level of 0.05 is commonly chosen in hypothesis testing, as it provides a balance between type I and type II errors, meaning we have a 5% chance of incorrectly rejecting the null hypothesis.
+
+#### Results
+
+1. **Observed TVD**: 
+   The observed Total Variation Distance (TVD) was calculated from the actual data distribution.
+
+2. **Simulated TVD**: 
+   We performed 1,000 simulations by permuting the season labels within the dataset to generate a distribution of TVD under the null hypothesis (uniform distribution of cause categories across seasons).
+
+3. **P-value**: 
+   The p-value is calculated as the proportion of simulated TVD values that are greater than the observed TVD.
+
+The p-value calculated is approximately 0.0.
+
+Since the p-value (0.0) is less than our significance level of 0.05, we can reject the null hypothesis. This suggests that there is a significant evidence to conclude that the proportion of each cause category is not uniformly distributed across seasons. In other words, the observed differences in the distributions of cause categories across seasons could not have reasonably have occurred by chance.
+
+
+The histogram below shows the distribution of the Total Variation Distance (TVD) from the 1,000 simulations. The red line represents the observed TVD value.
+
+<iframe src="assets/hypothesis.html" width="100%" height="500" frameborder="0"></iframe>
+
+- Test #2
+
+Null Hypothesis ($H_0$) - The distributions of mean affected customers for each state are the same for observations from 2005 and 2006.
+
+Alternative Hypothesis ($H_a$) - The distributions of mean affected customers for each state are different for observations from 2005 and 2006.
+
+To evaluate the hypothesis, we used the Total Variation Distance (TVD) as the test statistic. TVD measures the difference between the observed distributions of mean affected customers in 2005 and 2006 across states. The test compares how much the observed distribution of mean affected customers for 2006 deviates from the expected distribution for 2005, assuming that the distributions should be the same under the null hypothesis.
+
+The p-value calculated is approximately 0.0.
+
+Since the p-value (0.0) is much smaller than our significance level of 0.05, we reject the null hypothesis. This provides strong evidence to conclude that the distributions of mean affected customers for each state are significantly different between the observations in 2005 and 2006. The observed differences in the customer distributions across these two periods are highly unlikely to have occurred by chance.
+
+<iframe src="assets/hypothesis2.html" width="100%" height="500" frameborder="0"></iframe>>
 
 ## Framing a Prediction Problem
 
