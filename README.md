@@ -77,6 +77,7 @@ The following data cleaning steps were taken to prepare the dataset for analysis
    - This correction addressed data inaccuracies caused by erroneous zero entries, ensuring meaningful statistical summaries and analysis.  
 
 ---
+
 |   OBS |   YEAR |   MONTH | U.S._STATE   | NERC.REGION   | CLIMATE.REGION     |   ANOMALY.LEVEL | CAUSE.CATEGORY     | CLIMATE.CATEGORY   | CAUSE.CATEGORY.DETAIL   |   OUTAGE.DURATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   TOTAL.PRICE |   TOTAL.SALES |   TOTAL.CUSTOMERS |   TOTAL.REALGSP | OUTAGE.START        | OUTAGE.END          | SEASONAL.BINS   |
 |------:|-------:|--------:|:-------------|:--------------|:-------------------|----------------:|:-------------------|:-------------------|:------------------------|------------------:|-----------------:|---------------------:|--------------:|--------------:|------------------:|----------------:|:--------------------|:--------------------|:----------------|
 |     1 |   2011 |       7 | Minnesota    | MRO           | East North Central |            -0.3 | severe weather     | normal             | nan                     |              3060 |              nan |                70000 |          9.28 |       6562520 |       2.5957e+06  |          274182 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00 | Summer          |
@@ -92,7 +93,7 @@ The following data cleaning steps were taken to prepare the dataset for analysis
 The map below shows the frequency of power outages across different U.S. states. States such as Texas and California experience higher outage counts, likely due to larger populations, more extensive power grids, and increased vulnerability to extreme weather events like storms and wildfires. This visualization highlights regional disparities in power reliability across the country.  
 
 <!-- Embed the Folium map HTML file -->
-<iframe src="assets/state_frequency.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="assets/state_frequency.html" width="100%" height="400" frameborder="0"></iframe>
 
 ---
 
@@ -101,7 +102,7 @@ The map below shows the frequency of power outages across different U.S. states.
 The histogram below shows the frequency of power outages by cause category. Weather-related causes are the most common, underscoring the significant impact of natural events like storms, hurricanes, and wildfires on power reliability. Equipment failures are another major cause, reflecting aging infrastructure in certain regions. This distribution emphasizes the need for targeted improvements in infrastructure and disaster preparedness.  
 
 <!-- Embed the Histogram Plotly HTML file -->
-<iframe src="assets/cause_frequency.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="assets/cause_frequency.html" width="100%" height="400" frameborder="0"></iframe>
 
 
 ### Bivariate Analysis
@@ -111,7 +112,7 @@ The histogram below shows the frequency of power outages by cause category. Weat
 The violin plot below illustrates the distribution of **Anomaly Level** across different seasons. Fall and winter show a wider range of anomaly levels compared to summer and spring. This pattern indicates that extreme weather events such as winter storms and unpredictable fall weather contribute to greater variability in power outages during these seasons.  
 
 <!-- Embed the Violin Plot HTML file -->
-<iframe src="assets/violin.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="assets/violin.html" width="100%" height="400" frameborder="0"></iframe>
 
 ---
 
@@ -120,7 +121,7 @@ The violin plot below illustrates the distribution of **Anomaly Level** across d
 The scatter plot above shows the relationship between **Climate Region** and **Outage Duration**. Outage durations vary significantly across regions, with some regions experiencing notably longer outages, such as the Northeast and West. This pattern may be influenced by extreme weather events or infrastructure challenges in these areas, highlighting the impact of regional environmental and structural factors on power outage severity. 
 
 <!-- Embed the Scatter Plot HTML file -->
-<iframe src="assets/scatter.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="assets/scatter.html" width="100%" height="400" frameborder="0"></iframe>
 
 ### Interesting Aggregates
 The table below summarizes the **average total price** (in millions) of power outages grouped by **Cause Category** and **Climate Region**. It provides insights into how outage costs vary depending on the underlying cause and the regional climate. For instance, **equipment failures** and **severe weather** consistently result in higher costs across most regions, particularly in the **Northeast** and **West**, which may be due to their population density and infrastructure challenges. This information can help prioritize investments in preventive measures tailored to specific causes and regions.  
@@ -137,6 +138,10 @@ The table below summarizes the **average total price** (in millions) of power ou
 
 
 ## Assessment of Missingness
+
+### NMAR Analysis
+
+### Missingness Dependency
 
 ## Hypothesis Testing
 
