@@ -23,7 +23,7 @@ Readers should care about this dataset and research because power outages are a 
 
 The dataset contains **1,534 observations** and includes relevant columns related to power outages, their causes, durations, and economic impacts.  
 
-
+<table width="100%">
 | **Column Name**              | **Description**                                               |
 |------------------------------|---------------------------------------------------------------|
 | OBS                      | Unique observation identifier for each outage event.          |
@@ -47,7 +47,7 @@ The dataset contains **1,534 observations** and includes relevant columns relate
 | TOTAL.SALES              | Total electricity sales during the outage period.            |
 | TOTAL.CUSTOMERS          | Total number of electricity customers in the affected area.  |
 | TOTAL.REALGSP            | Total real Gross State Product (GSP) of the affected region. |
-
+</table>
 
 ## Data Cleaning and Exploratory Data Analysis
 
@@ -77,7 +77,7 @@ The following data cleaning steps were taken to prepare the dataset for analysis
    - This correction addressed data inaccuracies caused by erroneous zero entries, ensuring meaningful statistical summaries and analysis.  
 
 ---
-
+<table width="100%">
 |   OBS |   YEAR |   MONTH | U.S._STATE   | NERC.REGION   | CLIMATE.REGION     |   ANOMALY.LEVEL | CAUSE.CATEGORY     | CLIMATE.CATEGORY   | CAUSE.CATEGORY.DETAIL   |   OUTAGE.DURATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   TOTAL.PRICE |   TOTAL.SALES |   TOTAL.CUSTOMERS |   TOTAL.REALGSP | OUTAGE.START        | OUTAGE.END          | SEASONAL.BINS   |
 |------:|-------:|--------:|:-------------|:--------------|:-------------------|----------------:|:-------------------|:-------------------|:------------------------|------------------:|-----------------:|---------------------:|--------------:|--------------:|------------------:|----------------:|:--------------------|:--------------------|:----------------|
 |     1 |   2011 |       7 | Minnesota    | MRO           | East North Central |            -0.3 | severe weather     | normal             | nan                     |              3060 |              nan |                70000 |          9.28 |       6562520 |       2.5957e+06  |          274182 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00 | Summer          |
@@ -85,6 +85,7 @@ The following data cleaning steps were taken to prepare the dataset for analysis
 |     3 |   2010 |      10 | Minnesota    | MRO           | East North Central |            -1.5 | severe weather     | cold               | heavy wind              |              3000 |              nan |                70000 |          8.15 |       5222116 |       2.5869e+06  |          267895 | 2010-10-26 20:00:00 | 2010-10-28 22:00:00 | Fall            |
 |     4 |   2012 |       6 | Minnesota    | MRO           | East North Central |            -0.1 | severe weather     | normal             | thunderstorm            |              2550 |              nan |                68200 |          9.19 |       5787064 |       2.60681e+06 |          277627 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00 | Summer          |
 |     5 |   2015 |       7 | Minnesota    | MRO           | East North Central |             1.2 | severe weather     | warm               | nan                     |              1740 |              250 |               250000 |         10.43 |       5970339 |       2.67353e+06 |          292023 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00 | Summer          |
+</table>
 
 ### Univariate Analysis
 
@@ -93,7 +94,7 @@ The following data cleaning steps were taken to prepare the dataset for analysis
 The map below shows the frequency of power outages across different U.S. states. States such as Texas and California experience higher outage counts, likely due to larger populations, more extensive power grids, and increased vulnerability to extreme weather events like storms and wildfires. This visualization highlights regional disparities in power reliability across the country.  
 
 <!-- Embed the Folium map HTML file -->
-<iframe src="assets/state_frequency.html" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="assets/state_frequency.html" width="100%" height="500" frameborder="0"></iframe>
 
 ---
 
@@ -102,7 +103,7 @@ The map below shows the frequency of power outages across different U.S. states.
 The histogram below shows the frequency of power outages by cause category. Weather-related causes are the most common, underscoring the significant impact of natural events like storms, hurricanes, and wildfires on power reliability. Equipment failures are another major cause, reflecting aging infrastructure in certain regions. This distribution emphasizes the need for targeted improvements in infrastructure and disaster preparedness.  
 
 <!-- Embed the Histogram Plotly HTML file -->
-<iframe src="assets/cause_frequency.html" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="assets/cause_frequency.html" width="100%" height="500" frameborder="0"></iframe>
 
 
 ### Bivariate Analysis
@@ -112,7 +113,7 @@ The histogram below shows the frequency of power outages by cause category. Weat
 The violin plot below illustrates the distribution of **Anomaly Level** across different seasons. Fall and winter show a wider range of anomaly levels compared to summer and spring. This pattern indicates that extreme weather events such as winter storms and unpredictable fall weather contribute to greater variability in power outages during these seasons.  
 
 <!-- Embed the Violin Plot HTML file -->
-<iframe src="assets/violin.html" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="assets/violin.html" width="100%" height="500" frameborder="0"></iframe>
 
 ---
 
@@ -121,11 +122,12 @@ The violin plot below illustrates the distribution of **Anomaly Level** across d
 The scatter plot above shows the relationship between **Climate Region** and **Outage Duration**. Outage durations vary significantly across regions, with some regions experiencing notably longer outages, such as the Northeast and West. This pattern may be influenced by extreme weather events or infrastructure challenges in these areas, highlighting the impact of regional environmental and structural factors on power outage severity. 
 
 <!-- Embed the Scatter Plot HTML file -->
-<iframe src="assets/scatter.html" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="assets/scatter.html" width="100%" height="500" frameborder="0"></iframe>
 
 ### Interesting Aggregates
 The table below summarizes the **average total price** (in millions) of power outages grouped by **Cause Category** and **Climate Region**. It provides insights into how outage costs vary depending on the underlying cause and the regional climate. For instance, **equipment failures** and **severe weather** consistently result in higher costs across most regions, particularly in the **Northeast** and **West**, which may be due to their population density and infrastructure challenges. This information can help prioritize investments in preventive measures tailored to specific causes and regions.  
 
+<table width="100%">
 |   Central |   East North Central |   Northeast |   Northwest |   South |   Southeast |   Southwest |    West |   West North Central |
 |----------:|---------------------:|------------:|------------:|--------:|------------:|------------:|--------:|---------------------:|
 |   7.652   |              7.92333 |     12.354  |     6.905   | 8.24111 |    10.15    |     8.068   | 12.7424 |                6.21  |
@@ -135,7 +137,7 @@ The table below summarizes the **average total price** (in millions) of power ou
 |   9.49    |             10.605   |     13.0925 |     5.715   | 8.4081  |     8.338   |     7.73    | 12.8944 |                8.015 |
 |   8.27188 |              9.33592 |     12.4494 |     6.8304  | 8.62728 |     8.36417 |     8.126   | 12.7878 |                6.365 |
 |   8.402   |              8.24    |     13.71   |     6.325   | 8.65852 |     9.1075  |     8.67778 | 12.3703 |              nan     |
-
+</table>
 
 ## Assessment of Missingness
 
