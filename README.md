@@ -132,9 +132,24 @@ The table below summarizes the `average total price` (in millions) of power outa
 
 ## Assessment of Missingness
 ### NMAR Analysis
-The column `outage.start` in a power outage dataframe could be **NMAR** (Not Missing At Random) if missingness is linked to the severity of the outage. For example, more severe or complex outages, such as those lasting longer or requiring more restoration time, might have missing start times due to delays in data recording or prioritization of other tasks during the outage. This could indicate that the missingness is not random, but instead related to the characteristics of the outage itself. By analyzing the severity of outages and how it correlates with missing start times, we could better understand whether the missing data is systematically related to the observed severity, potentially making it **MAR** (Missing At Random). 
+The column `outage.start` in a power outage dataframe could be **NMAR** (Not Missing At Random) as the date can be missing on itself. The reported dates may be missing due to itself, therefore making it **NMAR**. Understanding the severity of the outages, such as those lasting longer or requiring more restoration time, might have missing start times due to delays in data recording or prioritization of other tasks during the outage. This could indicate that the missingness is not random, but instead related to the characteristics of the outage itself. By analyzing the severity of outages and how it correlates with missing start times, we could better understand whether the missing data is systematically related to the observed severity, potentially making it **MAR** (Missing At Random). 
 
 ### Missingness Dependency
+
+1. Model 1: `CAUSE.CATEGORY.DETAIL` vs `U.S._STATE`
+
+The missingness analysis for the `CAUSE.CATEGORY.DETAIL` with respect to `U.S._STATE` resulted in a p-value of `0.0`, indicating that the missingness pattern for this variable is **Missing at Random (MAR)**. This suggests that the missing cause category details can be related to the state, which is important for guiding the handling of missing values in subsequent analyses.
+
+<!-- Embed the Scatter Plot HTML file -->
+<iframe src="assets/MAR1.html" width="100%" height="500" frameborder="0"></iframe>
+---
+
+2. Model 2: `OUTAGE.DURATION` vs `MONTH`
+
+For the `OUTAGE.DURATION` with respect to `MONTH`, the analysis produced a p-value of `0.606`, suggesting that the missingness of duration is not related to month. This result implies that the missingness is likely related to other unobserved factors, informing decisions about the assumptions and strategies for handling the missing data.
+
+<!-- Embed the Scatter Plot HTML file -->
+<iframe src="assets/MAR2.html" width="100%" height="500" frameborder="0"></iframe>
 
 ## Hypothesis Testing
 
