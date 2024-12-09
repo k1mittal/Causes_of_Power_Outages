@@ -1,5 +1,6 @@
+# Whats the Cause of your Power Outage?
+by: Kaii Bijlani and Ketan Mittal
 
-# TITLE: Causes_of_Power_Outages
 DSC 80 Project: Investigating power outages and predicting their causes
 
 ## Introduction to the Dataset
