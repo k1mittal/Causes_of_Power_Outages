@@ -50,7 +50,6 @@ The dataset contains **1,534 observations** and includes relevant columns relate
 </table>
 
 ## Data Cleaning and Exploratory Data Analysis
-
 ### Data Cleaning
 The following data cleaning steps were taken to prepare the dataset for analysis, ensuring accuracy and consistency based on the data-generating process:  
 
@@ -140,7 +139,6 @@ The table below summarizes the **average total price** (in millions) of power ou
 </table>
 
 ## Assessment of Missingness
-
 ### NMAR Analysis
 
 ### Missingness Dependency
