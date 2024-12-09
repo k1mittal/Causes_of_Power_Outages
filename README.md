@@ -72,7 +72,6 @@ The following data cleaning steps were taken to prepare the dataset for analysis
 
 ---
 
-<div width="500px">
 |   OBS |   YEAR |   MONTH | U.S._STATE   | NERC.REGION   | CLIMATE.REGION     |   ANOMALY.LEVEL | CAUSE.CATEGORY     | CLIMATE.CATEGORY   | CAUSE.CATEGORY.DETAIL   |   OUTAGE.DURATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   TOTAL.PRICE |   TOTAL.SALES |   TOTAL.CUSTOMERS |   TOTAL.REALGSP | OUTAGE.START        | OUTAGE.END          | SEASONAL.BINS   |
 |:------|:-------|:--------|:-------------|:--------------|:-------------------|:----------------|:-------------------|:-------------------|:------------------------|:------------------|:-----------------|:---------------------|:--------------|:--------------|:------------------|:----------------|:--------------------|:--------------------|:----------------|
 |     1 |   2011 |       7 | Minnesota    | MRO           | East North Central |            -0.3 | severe weather     | normal             | nan                     |              3060 |              nan |                70000 |          9.28 |       6562520 |       2.5957e+06  |          274182 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00 | Summer          |
@@ -80,7 +79,6 @@ The following data cleaning steps were taken to prepare the dataset for analysis
 |     3 |   2010 |      10 | Minnesota    | MRO           | East North Central |            -1.5 | severe weather     | cold               | heavy wind              |              3000 |              nan |                70000 |          8.15 |       5222116 |       2.5869e+06  |          267895 | 2010-10-26 20:00:00 | 2010-10-28 22:00:00 | Fall            |
 |     4 |   2012 |       6 | Minnesota    | MRO           | East North Central |            -0.1 | severe weather     | normal             | thunderstorm            |              2550 |              nan |                68200 |          9.19 |       5787064 |       2.60681e+06 |          277627 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00 | Summer          |
 |     5 |   2015 |       7 | Minnesota    | MRO           | East North Central |             1.2 | severe weather     | warm               | nan                     |              1740 |              250 |               250000 |         10.43 |       5970339 |       2.67353e+06 |          292023 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00 | Summer          |
-</div>
 
 ### Univariate Analysis
 
@@ -134,6 +132,7 @@ The table below summarizes the `average total price` (in millions) of power outa
 
 ## Assessment of Missingness
 ### NMAR Analysis
+The column `outage.start` in a power outage dataframe could be **NMAR** (Not Missing At Random) if missingness is linked to the severity of the outage. For example, more severe or complex outages, such as those lasting longer or requiring more restoration time, might have missing start times due to delays in data recording or prioritization of other tasks during the outage. This could indicate that the missingness is not random, but instead related to the characteristics of the outage itself. By analyzing the severity of outages and how it correlates with missing start times, we could better understand whether the missing data is systematically related to the observed severity, potentially making it **MAR** (Missing At Random). 
 
 ### Missingness Dependency
 
