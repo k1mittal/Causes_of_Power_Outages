@@ -1,0 +1,5 @@
+# Ignore everything in project04
+# project04/*
+
+# Allow .gitignore in project04 (if needed)
+!project04/.gitignore
