@@ -23,7 +23,7 @@ Readers should care about this dataset and research because power outages are a 
 
 The dataset contains **1,534 observations** and includes relevant columns related to power outages, their causes, durations, and economic impacts.  
 
-<table width="100%">
+<table width="500px">
 | **Column Name**              | **Description**                                               |
 |------------------------------|---------------------------------------------------------------|
 | OBS                      | Unique observation identifier for each outage event.          |
@@ -76,7 +76,7 @@ The following data cleaning steps were taken to prepare the dataset for analysis
    - This correction addressed data inaccuracies caused by erroneous zero entries, ensuring meaningful statistical summaries and analysis.  
 
 ---
-<table width="100%">
+<table width="500px">
 |   OBS |   YEAR |   MONTH | U.S._STATE   | NERC.REGION   | CLIMATE.REGION     |   ANOMALY.LEVEL | CAUSE.CATEGORY     | CLIMATE.CATEGORY   | CAUSE.CATEGORY.DETAIL   |   OUTAGE.DURATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   TOTAL.PRICE |   TOTAL.SALES |   TOTAL.CUSTOMERS |   TOTAL.REALGSP | OUTAGE.START        | OUTAGE.END          | SEASONAL.BINS   |
 |------:|-------:|--------:|:-------------|:--------------|:-------------------|----------------:|:-------------------|:-------------------|:------------------------|------------------:|-----------------:|---------------------:|--------------:|--------------:|------------------:|----------------:|:--------------------|:--------------------|:----------------|
 |     1 |   2011 |       7 | Minnesota    | MRO           | East North Central |            -0.3 | severe weather     | normal             | nan                     |              3060 |              nan |                70000 |          9.28 |       6562520 |       2.5957e+06  |          274182 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00 | Summer          |
@@ -126,7 +126,7 @@ The scatter plot above shows the relationship between **Climate Region** and **O
 ### Interesting Aggregates
 The table below summarizes the **average total price** (in millions) of power outages grouped by **Cause Category** and **Climate Region**. It provides insights into how outage costs vary depending on the underlying cause and the regional climate. For instance, **equipment failures** and **severe weather** consistently result in higher costs across most regions, particularly in the **Northeast** and **West**, which may be due to their population density and infrastructure challenges. This information can help prioritize investments in preventive measures tailored to specific causes and regions.  
 
-<table width="100%">
+<table width=500px>
 |   Central |   East North Central |   Northeast |   Northwest |   South |   Southeast |   Southwest |    West |   West North Central |
 |----------:|---------------------:|------------:|------------:|--------:|------------:|------------:|--------:|---------------------:|
 |   7.652   |              7.92333 |     12.354  |     6.905   | 8.24111 |    10.15    |     8.068   | 12.7424 |                6.21  |
