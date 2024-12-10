@@ -202,10 +202,10 @@ Since the p-value (0.0) is much smaller than our significance level of 0.05, we 
 This is a Multiclass Classification problem 
 
 Response Variable:  
-**Cause** - This variable represents the general cause of power outages. We chose this variable because understanding the cause of outages can help improve outage management, preparedness, and mitigation efforts.  
+`CAUSE.CATEGORY` - This variable represents the general cause of power outages. We chose this variable because understanding the cause of outages can help improve outage management, preparedness, and mitigation efforts.  
 
 Features Used:  
-We will only use features that can be found after a power outage, meaning we will note use features like 'CAUSE.CATEGORY.DETAIL'. We will also use only relevant features, ensuring that the model is trained and does not have confouding variables.  
+We will only use features that can be found after a power outage, meaning we will not use features like `CAUSE.CATEGORY.DETAIL`. We will also use only relevant features, ensuring that the model is trained and does not have confouding variables.  
 
 Model Choice:  
 **Random Forest Multiclass Classifier**  
