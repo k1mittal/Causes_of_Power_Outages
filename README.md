@@ -199,6 +199,30 @@ Since the p-value (0.0) is much smaller than our significance level of 0.05, we 
 
 ## Framing a Prediction Problem
 
+This is a Multiclass Classification problem 
+
+Response Variable:  
+**Cause** - This variable represents the general cause of power outages. We chose this variable because understanding the cause of outages can help improve outage management, preparedness, and mitigation efforts.  
+
+Features Used:  
+We will only use features that can be found after a power outage, meaning we will note use features like 'CAUSE.CATEGORY.DETAIL'. We will also use only relevant features, ensuring that the model is trained and does not have confouding variables.  
+
+Model Choice:  
+**Random Forest Multiclass Classifier**  
+We chose this model because of its ability to handle categorical variables, manage feature importance, and deal with imbalanced data effectively.  
+
+Evaluation Metrics:  
+
+1. **R² Score**:  
+   - **Why**: Measures the proportion of variance explained by the model, providing insight into the overall performance of the model.  
+   - **Justification**: Useful for understanding how well the features explain the causes of outages, though less common for classification tasks.  
+
+2. **F1-Score**:  
+   - **Why**: Balances precision and recall, making it suitable for evaluating multiclass classification where class imbalances may exist.  
+   - **Justification**: Chosen over accuracy because of potential imbalanced class distributions, ensuring that both false positives and false negatives are considered.  
+
+By using these metrics, we aim to comprehensively evaluate the model's predictive performance and robustness.  
+
 ## Baseline Model
 
 ## Final Model
