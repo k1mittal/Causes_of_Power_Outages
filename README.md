@@ -354,7 +354,7 @@ These features were chosen to improve the model's ability to understand relation
 
 ### Final Model Confusion
 <iframe src="assets/confusion_final.png" 
-        style="width: 100%; max-width: 1600px; height: 400px; border: none; transform: scale(0.8); transform-origin: top left; display: block;"></iframe>
+        style="width: 100%; max-width: 200px; height: 400px; border: none; transform: scale(0.8); transform-origin: top left; display: block;"></iframe>
 
 
 The improvements in data preprocessing, feature handling, and hyperparameter tuning led to a model that performs significantly better than the baseline, with better precision, recall, and overall accuracy. By encoding, imputing, and standardizing the data effectively, Model 2 demonstrated robust performance, making it the best model developed so far. The confusion matrix further confirmed its ability to predict across multiple categories with minimal bias.
