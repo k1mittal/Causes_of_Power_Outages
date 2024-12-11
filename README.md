@@ -276,33 +276,61 @@ Overall, the model appears to be a reasonable first step in predicting outage ca
 
 ## Final Model
 
-In this model, several features were added or modified to improve its predictive performance based on the data generation process:
 
-1. **One-Hot Encoding** for `U.S._STATE`, `CLIMATE.REGION`, `CLIMATE.CATEGORY`, and `NERC.REGION`: 
-   - These features represent categorical variables with no inherent ordinal relationship. One-hot encoding is a suitable choice as it ensures that each category is treated independently, preventing the model from assuming any unintended ordinal relationships between them.
+1. **One-hot encoding** of categorical variables such as US state, climate region, climate category, and NERC region: These variables have distinct categories that do not have any inherent ordinal relationships. One-hot encoding converts them into binary columns, making them suitable for machine learning models like Random Forests, which require numerical inputs.
 
-2. **Ordinal Encoding** for `MONTH`:
-   - The month feature has a clear order (January through December). Ordinal encoding is appropriate because it maintains the inherent ordinal nature of the data without assuming linearity, which would be done using one-hot encoding.
+2. **Ordinal encoding** of the month: Since months have an inherent order (January to December), ordinal encoding captures this order by converting the month into an integer. This encoding method ensures the model can leverage the time-based pattern, improving its ability to make predictions based on temporal trends.
 
-3. **Standardization** of `CUSTOMERS.AFFECTED`:
-   - The distribution of `CUSTOMERS.AFFECTED` appears to be relatively normal, but there are noticeable outliers. Standardizing this feature ensures that its scale does not dominate other numerical features, thus improving model performance by reducing the influence of extreme values.
+3. **Standardization of the "CUSTOMERS.AFFECTED" feature**: The distribution of the "CUSTOMERS.AFFECTED" variable appeared somewhat skewed with outliers. Standardizing this feature helps reduce the impact of extreme values, allowing the model to better identify patterns within the data. This improves model stability and helps it converge more effectively during training.
 
-4. **Imputation for Missing Data**:
-   - The features `DEMAND.LOSS.MW` and `CUSTOMERS.AFFECTED` have missing values. Through a Missing At Random (MAR) analysis, we determined that these features are dependent on other columns. As a result, we used an iterative imputer with random forest regression to fill in the missing values, leveraging the relationship between the features for better data completion.
+4. **Handling missing data using Iterative Imputer**: Given the presence of missing values, especially for "DEMAND.LOSS.MW" and "CUSTOMERS.AFFECTED", using an Iterative Imputer with a Random Forest Regressor helps predict and impute missing values based on the relationships observed in other features. This technique improves the robustness of the model by using information from correlated features.
 
-The model chosen is a **Random Forest Classifier**, which is suitable for handling both numerical and categorical data and is robust to overfitting, especially with a large number of trees. Random forests are ideal for this task due to their ensemble nature, which improves accuracy and generalization.
+These features were chosen to improve the model's ability to understand relationships within the data, address missing values, and handle categorical variables effectively. By encoding, imputing, and standardizing, the model can learn from the full set of features, leading to better generalization on unseen data.
 
-1. **Criterion**: We tested `'gini'`, `'entropy'`, and `'log_loss'` as splitting criteria to determine which one best splits the data at each node.
-2. **Max Depth**: A range from 5 to 25 was tested to control the depth of the trees and avoid overfitting.
-3. **Number of Estimators**: We tried 5, 10, 20, 50, 100, and 200 estimators to balance computational cost and model performance.
+**Model**: The final model is a **Random Forest Classifier**, which is a powerful ensemble method that can handle both categorical and continuous features, captures non-linear relationships, and is less prone to overfitting compared to individual decision trees.
 
-The **GridSearchCV** was used to perform an exhaustive search over these hyperparameters using cross-validation. This helped identify the best combination of hyperparameters that maximized the model's performance.
+**Hyperparameters**:
+- **Criterion**: We tested multiple options: 'gini', 'entropy', and 'log_loss'. The choice of criterion influences the impurity measurement in the decision trees. Gini impurity is typically faster and performs well in practice.
+- **Max Depth**: We searched for the optimal max depth in the range [5, 25], as restricting tree depth helps prevent overfitting.
+- **Number of Estimators**: We tried several values for the number of trees (5, 10, 20, 50, 100, 200). A higher number of estimators typically improves performance but increases computation time.
 
-- **R² Score (Test Set)**: 0.7805
-- **F1 Score (Macro Average)**: 0.436
+**Hyperparameter Tuning Method**: We used **GridSearchCV**, which performs an exhaustive search over a specified parameter grid and selects the best combination based on cross-validation performance.
 
-This model is a marked improvement over the baseline model, where the test R² score was 0.816 and the F1 score was 0.613. However, the model has a higher **precision** (0.6846) and **recall** (0.5766) when compared to the baseline, which suggests it is performing better across various categories without a significant bias towards one specific category.
 
-The confusion matrix for Model 2 shows a more balanced performance in terms of prediction accuracy across the different categories. The model does not show a heavy bias toward one particular category, indicating improvements in both precision and recall.
+1. **Baseline Model**: The baseline model used basic feature encoding and a simpler pipeline. Its performance was decent but not optimized. The R² score was 0.8219, with a macro F1 score of 0.6357, indicating moderate prediction accuracy, but there was room for improvement.
+
+2. **Model 1 (Improved Version)**: This model added feature encoding, standardization, and imputation for missing values. It achieved an R² score of 0.9401 and a macro F1 score of 0.9201, showing a significant improvement over the baseline. The precision and recall scores also improved, suggesting better performance and less bias towards any particular category.
+
+3. **Confusion Matrix**: The confusion matrix for the final model showed that it made fewer misclassifications compared to the previous model, which indicates the improved accuracy and reliability of the predictions.
+
+The improvements in data preprocessing, feature handling, and hyperparameter tuning led to a model that performs significantly better than the baseline, with better precision, recall, and overall accuracy. By encoding, imputing, and standardizing the data effectively, Model 2 demonstrated robust performance, making it the best model developed so far. The confusion matrix further confirmed its ability to predict across multiple categories with minimal bias.
 
 ## Fairness Analysis
+- **Group X (Group 0)**: Low electricity-consuming outages, defined as `TOTAL.SALES` values below 18,000,000.
+- **Group Y (Group 1)**: High electricity-consuming outages, defined as `TOTAL.SALES` values above 18,000,000.
+
+The evaluation metric used is the **F1 Score**, which is a measure of a model’s accuracy that combines both precision and recall, making it a suitable metric for imbalance in data.
+
+- **Null Hypothesis (H₀)**: The model is fair for both high and low electricity-consuming outages, i.e., the absolute difference in F1 scores for Group X (low) and Group Y (high) is not significant.
+- **Alternative Hypothesis (Hₐ)**: The model is unfair for either high or low electricity-consuming outages, i.e., the absolute difference in F1 scores for Group X (low) and Group Y (high) is significant.
+
+The test statistic used is the **absolute difference in F1 scores** between Group 0 (low electricity-consuming outages) and Group 1 (high electricity-consuming outages). A large test statistic indicates a significant difference in performance between the two groups, implying model bias.
+
+A typical significance level of **α = 0.05** is used to assess the p-value.
+
+A permutation test was conducted by shuffling the labels of the 'Group' column and recalculating the absolute difference in F1 scores for 1000 iterations. This produces a distribution of test statistics under the null hypothesis of no significant difference in F1 scores between the groups.
+
+The p-value is calculated by comparing the observed absolute difference in F1 scores to the permutation distribution. If the observed statistic is greater than most of the simulated values, this suggests evidence against the null hypothesis.
+
+- **Observed test statistic**: 0.0418
+- **P-value**: 0.262
+
+Given that the p-value (0.262) is much greater than the significance level of 0.05, we **fail to reject the null hypothesis**. This indicates that there is no significant evidence to suggest that the model is unfair for either low or high electricity-consuming outages. Therefore, we conclude that the model performs fairly across both groups.
+
+The histogram of the permutation test results is displayed below, with the red vertical line representing the observed test statistic.
+
+- **Group X**: Low electricity-consuming outages (Group 0).
+- **Group Y**: High electricity-consuming outages (Group 1).
+- **Test Statistic**: Absolute difference in F1 scores.
+- **P-value**: 0.262, which is greater than the significance level of 0.05.
+- **Conclusion**: There is no significant difference in model performance between high and low electricity-consuming outages, suggesting fairness in the model.
