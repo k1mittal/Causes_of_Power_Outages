@@ -276,7 +276,6 @@ Overall, the model appears to be a reasonable first step in predicting outage ca
 
 ## Final Model
 
-
 1. **One-hot encoding** of categorical variables such as US state, climate region, climate category, and NERC region: These variables have distinct categories that do not have any inherent ordinal relationships. One-hot encoding converts them into binary columns, making them suitable for machine learning models like Random Forests, which require numerical inputs.
 
 2. **Ordinal encoding** of the month: Since months have an inherent order (January to December), ordinal encoding captures this order by converting the month into an integer. This encoding method ensures the model can leverage the time-based pattern, improving its ability to make predictions based on temporal trends.
@@ -284,6 +283,8 @@ Overall, the model appears to be a reasonable first step in predicting outage ca
 3. **Standardization of the "CUSTOMERS.AFFECTED" feature**: The distribution of the "CUSTOMERS.AFFECTED" variable appeared somewhat skewed with outliers. Standardizing this feature helps reduce the impact of extreme values, allowing the model to better identify patterns within the data. This improves model stability and helps it converge more effectively during training.
 
 4. **Handling missing data using Iterative Imputer**: Given the presence of missing values, especially for "DEMAND.LOSS.MW" and "CUSTOMERS.AFFECTED", using an Iterative Imputer with a Random Forest Regressor helps predict and impute missing values based on the relationships observed in other features. This technique improves the robustness of the model by using information from correlated features.
+
+<iframe src="assets/MAR_bar.html" width="100%" height="400" frameborder="0"></iframe>
 
 These features were chosen to improve the model's ability to understand relationships within the data, address missing values, and handle categorical variables effectively. By encoding, imputing, and standardizing, the model can learn from the full set of features, leading to better generalization on unseen data.
 
@@ -296,12 +297,13 @@ These features were chosen to improve the model's ability to understand relation
 
 **Hyperparameter Tuning Method**: We used **GridSearchCV**, which performs an exhaustive search over a specified parameter grid and selects the best combination based on cross-validation performance.
 
-
 1. **Baseline Model**: The baseline model used basic feature encoding and a simpler pipeline. Its performance was decent but not optimized. The R² score was 0.8219, with a macro F1 score of 0.6357, indicating moderate prediction accuracy, but there was room for improvement.
 
 2. **Model 1 (Improved Version)**: This model added feature encoding, standardization, and imputation for missing values. It achieved an R² score of 0.9401 and a macro F1 score of 0.9201, showing a significant improvement over the baseline. The precision and recall scores also improved, suggesting better performance and less bias towards any particular category.
 
 3. **Confusion Matrix**: The confusion matrix for the final model showed that it made fewer misclassifications compared to the previous model, which indicates the improved accuracy and reliability of the predictions.
+
+<iframe src="assets/confusion_final.html" width="100%" height="400" frameborder="0"></iframe>
 
 The improvements in data preprocessing, feature handling, and hyperparameter tuning led to a model that performs significantly better than the baseline, with better precision, recall, and overall accuracy. By encoding, imputing, and standardizing the data effectively, Model 2 demonstrated robust performance, making it the best model developed so far. The confusion matrix further confirmed its ability to predict across multiple categories with minimal bias.
 
@@ -334,3 +336,5 @@ The histogram of the permutation test results is displayed below, with the red v
 - **Test Statistic**: Absolute difference in F1 scores.
 - **P-value**: 0.262, which is greater than the significance level of 0.05.
 - **Conclusion**: There is no significant difference in model performance between high and low electricity-consuming outages, suggesting fairness in the model.
+
+<iframe src="assets/fairness.html" width="100%" height="400" frameborder="0"></iframe>
