@@ -331,7 +331,7 @@ These features were chosen to improve the model's ability to understand relation
    
 4. **Model 2 (Final Version)**: This model added feature encoding, standardization, hyperparameter tuning with grid search (same as model one) and imputation for missing values. It achieved an R² score of 0.9401 and a macro F1 score of 0.9201, showing a significant improvement over the baseline. The precision and recall scores also improved, suggesting better performance and less bias towards any particular category.
 
-<iframe src="assets/model_final_test.pdf" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="assets/model_final_test.pdf" width="100%" height="200" frameborder="0"></iframe>
 
 6. **Confusion Matrix**: The confusion matrix for the final model versus the base model and version one showed that it made fewer misclassifications compared to the previous model, which indicates the improved accuracy and reliability of the predictions.
 
