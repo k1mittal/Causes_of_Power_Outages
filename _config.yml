@@ -1,10 +1,10 @@
-remote_theme: benbalter/retlab
+remote_theme: jekyll/minima
 plugins:
 - jekyll-remote-theme
 title: "Whats the Cause of your Power Outage?"
 description: "by: Kaii Bijlani and Ketan Mittal"
 
 minima:
-  skin: dark  
+  skin: solarized-dark  
 
 theme: minima
