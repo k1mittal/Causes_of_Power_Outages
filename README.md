@@ -224,8 +224,85 @@ Evaluation Metrics:
 By using these metrics, we aim to comprehensively evaluate the model's predictive performance and robustness.  
 
 ## Baseline Model
+The model is designed to predict the cause category of outages based on various features. The data preparation involves handling missing values, encoding categorical features, and training a Random Forest Classifier.
 
+
+Quantitative Features:
+1. `DEMAND.LOSS.MW` (Continuous)
+2. `CUSTOMERS.AFFECTED` (Continuous)
+3. `OUTAGE.DURATION` (Continuous)
+4. `TOTAL.PRICE` (Continuous)
+5. `TOTAL.SALES` (Continuous)
+
+Ordinal Features:
+1. `MONTH` (Ordinal: Encoded as integers representing months)
+
+Nominal Features:
+1. `U.S._STATE` (Nominal: One-hot encoded)
+2. `CLIMATE.REGION` (Nominal: One-hot encoded)
+3. `CLIMATE.CATEGORY` (Nominal: One-hot encoded)
+
+
+1. **Missing Values**: 
+   - Missing values for `DEMAND.LOSS.MW`, `CUSTOMERS.AFFECTED`, and `OUTAGE.DURATION` are filled with `0`.
+   - Rows with missing values in `TOTAL.PRICE`, `TOTAL.SALES`, and `CLIMATE.REGION` are dropped.
+   
+2. **Encoding**:
+   - **One-hot encoding** is applied to the categorical columns: `U.S._STATE`, `CLIMATE.REGION`, and `CLIMATE.CATEGORY`.
+   - **Ordinal encoding** is applied to the `MONTH` feature, as it has a natural order.
+   - Numerical columns are passed through without modification.
+
+The model uses a Random Forest Classifier, and the following metrics were reported:
+
+- **Training Performance**: The model shows signs of overfitting, as it scores high on the training set but doesn't perform as well on the test set.
+- **Test Performance**: 
+  - R² score: Indicates how well the model is performing on the test data. Score (0.8136986301369863)
+  - F1-score (Macro Average): Measures the balance between precision and recall. Score (0.6045075849793191)
+  - Precision and Recall (Macro Average): Evaluate the model’s ability to correctly classify each cause category. (0.7030550853573725) and (0.5653200956210532)
+
+- The confusion matrix provides insight into the model’s classification performance for each cause category.
+
+<iframe src="assets/confusion_base.html" width="100%" height="400" frameborder="0"></iframe>
+
+- **R² Score**: The model demonstrates a good fit on the test set but requires further tuning.
+- **F1 Score**: The model achieves a decent F1 score, balancing precision and recall.
+- **Precision**: Measures the accuracy of positive predictions.
+- **Recall**: Measures the model’s ability to identify all positive instances.
+
+
+Based on the performance on the test set, the model is decent but can be improved. The overfitting issue suggests the need for hyperparameter tuning, cross-validation, or even using a more complex model to improve generalization.
+
+Overall, the model appears to be a reasonable first step in predicting outage causes, but further improvements are necessary to make it more reliable and robust for real-world applications.
 
 ## Final Model
+
+In this model, several features were added or modified to improve its predictive performance based on the data generation process:
+
+1. **One-Hot Encoding** for `U.S._STATE`, `CLIMATE.REGION`, `CLIMATE.CATEGORY`, and `NERC.REGION`: 
+   - These features represent categorical variables with no inherent ordinal relationship. One-hot encoding is a suitable choice as it ensures that each category is treated independently, preventing the model from assuming any unintended ordinal relationships between them.
+
+2. **Ordinal Encoding** for `MONTH`:
+   - The month feature has a clear order (January through December). Ordinal encoding is appropriate because it maintains the inherent ordinal nature of the data without assuming linearity, which would be done using one-hot encoding.
+
+3. **Standardization** of `CUSTOMERS.AFFECTED`:
+   - The distribution of `CUSTOMERS.AFFECTED` appears to be relatively normal, but there are noticeable outliers. Standardizing this feature ensures that its scale does not dominate other numerical features, thus improving model performance by reducing the influence of extreme values.
+
+4. **Imputation for Missing Data**:
+   - The features `DEMAND.LOSS.MW` and `CUSTOMERS.AFFECTED` have missing values. Through a Missing At Random (MAR) analysis, we determined that these features are dependent on other columns. As a result, we used an iterative imputer with random forest regression to fill in the missing values, leveraging the relationship between the features for better data completion.
+
+The model chosen is a **Random Forest Classifier**, which is suitable for handling both numerical and categorical data and is robust to overfitting, especially with a large number of trees. Random forests are ideal for this task due to their ensemble nature, which improves accuracy and generalization.
+
+1. **Criterion**: We tested `'gini'`, `'entropy'`, and `'log_loss'` as splitting criteria to determine which one best splits the data at each node.
+2. **Max Depth**: A range from 5 to 25 was tested to control the depth of the trees and avoid overfitting.
+3. **Number of Estimators**: We tried 5, 10, 20, 50, 100, and 200 estimators to balance computational cost and model performance.
+
+The **GridSearchCV** was used to perform an exhaustive search over these hyperparameters using cross-validation. This helped identify the best combination of hyperparameters that maximized the model's performance.
+
+- **R² Score (Test Set)**: 0.7805
+- **F1 Score (Macro Average)**: 0.436
+
+This model is a marked improvement over the baseline model, where the test R² score was 0.816 and the F1 score was 0.613. However, the model has a higher **precision** (0.6846) and **recall** (0.5766) when compared to the baseline, which suggests it is performing better across various categories without a significant bias towards one specific category.
+
+The confusion matrix for Model 2 shows a more balanced performance in terms of prediction accuracy across the different categories. The model does not show a heavy bias toward one particular category, indicating improvements in both precision and recall.
 
 ## Fairness Analysis
