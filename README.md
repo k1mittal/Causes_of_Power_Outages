@@ -310,7 +310,7 @@ Note how the only difference between this model and the base model is the *GridS
   - F1-score (Macro Average): Measures the balance between precision and recall. Score (0.725029248014192)
 
 ## Model 2 Confusion
-<iframe src="assets/model_2_confusion.png" 
+<iframe src="assets/model_2_confusion.pdf" 
         style="width: 100%; max-width: 800px; height: 400px; border: none; transform: scale(0.8); transform-origin: top left; display: block;"></iframe>
 
 
@@ -353,7 +353,7 @@ These features were chosen to improve the model's ability to understand relation
 6. **Confusion Matrix**: The confusion matrix for the final model versus the base model and version one showed that it made fewer misclassifications compared to the previous model, which indicates the improved accuracy and reliability of the predictions.
 
 ### Final Model Confusion
-<iframe src="assets/confusion_final.png" 
+<iframe src="assets/confusion_final.pdf" 
         style="width: 200%; max-width: 800px; height: 400px; border: none; transform: scale(0.8); transform-origin: top left; display: block;"></iframe>
 
 
