@@ -348,7 +348,7 @@ These features were chosen to improve the model's ability to understand relation
 
 ### Final Model Test Scores
 <iframe src="assets/final_model_test_all.png" 
-        style="width: 100%; max-width: 800px; height: 400px; border: none; transform: scale(0.8); transform-origin: top left; display: block;"></iframe>
+        style="width: 100%; max-width: 1600px; height: 400px; border: none; transform: scale(0.8); transform-origin: top left; display: block;"></iframe>
         
 6. **Confusion Matrix**: The confusion matrix for the final model versus the base model and version one showed that it made fewer misclassifications compared to the previous model, which indicates the improved accuracy and reliability of the predictions.
 
