@@ -262,7 +262,7 @@ The model uses a Random Forest Classifier, and the following metrics were report
 
 - The confusion matrix provides insight into the model’s classification performance for each cause category.
 
-<iframe src="assets/confusion_base.html" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="assets/confusion_base.pdf" width="100%" height="400" frameborder="0"></iframe>
 
 - **R² Score**: The model demonstrates a good fit on the test set but requires further tuning.
 - **F1 Score**: The model achieves a decent F1 score, balancing precision and recall.
@@ -284,7 +284,7 @@ Overall, the model appears to be a reasonable first step in predicting outage ca
 
 4. **Handling missing data using Iterative Imputer**: Given the presence of missing values, especially for "DEMAND.LOSS.MW" and "CUSTOMERS.AFFECTED", using an Iterative Imputer with a Random Forest Regressor helps predict and impute missing values based on the relationships observed in other features. This technique improves the robustness of the model by using information from correlated features.
 
-<iframe src="assets/MAR_bar.html" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="assets/MAR_bar.pdf" width="100%" height="400" frameborder="0"></iframe>
 
 These features were chosen to improve the model's ability to understand relationships within the data, address missing values, and handle categorical variables effectively. By encoding, imputing, and standardizing, the model can learn from the full set of features, leading to better generalization on unseen data.
 
@@ -303,7 +303,7 @@ These features were chosen to improve the model's ability to understand relation
 
 3. **Confusion Matrix**: The confusion matrix for the final model showed that it made fewer misclassifications compared to the previous model, which indicates the improved accuracy and reliability of the predictions.
 
-<iframe src="assets/confusion_final.html" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="assets/confusion_final.pdf" width="100%" height="400" frameborder="0"></iframe>
 
 The improvements in data preprocessing, feature handling, and hyperparameter tuning led to a model that performs significantly better than the baseline, with better precision, recall, and overall accuracy. By encoding, imputing, and standardizing the data effectively, Model 2 demonstrated robust performance, making it the best model developed so far. The confusion matrix further confirmed its ability to predict across multiple categories with minimal bias.
 
