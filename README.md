@@ -138,6 +138,12 @@ The column `outage.start` in a power outage dataframe could be **NMAR** (Not Mis
 
 - Model 1: `CAUSE.CATEGORY.DETAIL` vs `U.S._STATE`
 
+$H_0$: Cause category detail is MAR with respect to U.S. state
+
+$H_a$: Cause category detail is not MAR with respect to U.S. state
+
+We will perform a permutation test on missing (False or True) and using the TVD as the test statistic, since U.S. state is categorical.
+
 The missingness analysis for the `CAUSE.CATEGORY.DETAIL` with respect to `U.S._STATE` resulted in a p-value of `0.0`, indicating that the missingness pattern for this variable is **Missing at Random (MAR)**. This suggests that the missing cause category details can be related to the state, which is important for guiding the handling of missing values in subsequent analyses.
 
 <!-- Embed the Scatter Plot HTML file -->
@@ -145,6 +151,12 @@ The missingness analysis for the `CAUSE.CATEGORY.DETAIL` with respect to `U.S._S
 ---
 
 - Model 2: `OUTAGE.DURATION` vs `MONTH`
+
+$H_0$: Outage duration is MAR with respect to month
+
+$H_a$: Outage duration is not MAR with respect to month
+
+We will perform a permutation test on missing (False or True) and using the TVD as the test statistic, since month is also categorical.
 
 For the `OUTAGE.DURATION` with respect to `MONTH`, the analysis produced a p-value of `0.606`, suggesting that the missingness of duration is not related to month. This result implies that the missingness is likely related to other unobserved factors, informing decisions about the assumptions and strategies for handling the missing data.
 
@@ -155,9 +167,9 @@ For the `OUTAGE.DURATION` with respect to `MONTH`, the analysis produced a p-val
 
 - Test #1
 
-Null Hypothesis ($H_0$) - The proportion of each cause category is uniformly distributed across each season, for each cause category.
+Null Hypothesis: $H_0$  - The proportion of each cause category is uniformly distributed across each season, for each cause category.
 
-Alternative Hypothesis ($H_a$) - The proportion of each cause category is not uniformly distributed across each season, for each cause category.
+Alternative Hypothesis: $H_a$ - The proportion of each cause category is not uniformly distributed across each season, for each cause category.
 
 To evaluate the hypothesis, we used the Total Variation Distance (TVD) as the test statistic. TVD measures the difference between the observed and expected distributions of cause categories across seasons. The test compares how much the observed distribution deviates from the expected distribution under the assumption that the cause categories are uniformly distributed across seasons.
 
@@ -185,9 +197,9 @@ The histogram below shows the distribution of the Total Variation Distance (TVD)
 
 - Test #2
 
-Null Hypothesis ($H_0$) - The distributions of mean affected customers for each state are the same for observations from 2005 and 2006.
+Null Hypothesis: $H_0$ - The distributions of mean affected customers for each state are the same for observations from 2005 and 2006.
 
-Alternative Hypothesis ($H_a$) - The distributions of mean affected customers for each state are different for observations from 2005 and 2006.
+Alternative Hypothesis: $H_a$ - The distributions of mean affected customers for each state are different for observations from 2005 and 2006.
 
 To evaluate the hypothesis, we used the Total Variation Distance (TVD) as the test statistic. TVD measures the difference between the observed distributions of mean affected customers in 2005 and 2006 across states. The test compares how much the observed distribution of mean affected customers for 2006 deviates from the expected distribution for 2005, assuming that the distributions should be the same under the null hypothesis.
 
