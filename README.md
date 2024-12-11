@@ -341,7 +341,7 @@ These features were chosen to improve the model's ability to understand relation
 
 2. **Model 1 (Improved Version)**: This model used the same architecture as the base model, with a grid search step to tune the max depth of the decision trees, the criterion of the random forest and the number of trees. It achieved an R² score of 0.8109, around the same as the base model, but it had a higher macro F1 score of 0.7250 which indicates slightly better improvement.
    
-4. **Model 2 (Final Version)**: This model added feature encoding, standardization, hyperparameter tuning with grid search (same as model one) and imputation for missing values. It achieved an R² score of 0.9401 and a macro F1 score of 0.9201, showing a significant improvement over the baseline. The precision and recall scores also improved, suggesting better performance and less bias towards any particular category.
+4. **Model 2 (Final Version)**: This model added feature encoding, standardization, hyperparameter tuning with grid search (same as model one) and imputation for missing values. It achieved an R² score of 0.9458 and a macro F1 score of 0.9239, showing a significant improvement over the baseline. The precision and recall scores also improved, suggesting better performance and less bias towards any particular category.
 
 
 <iframe src="assets/final_model_test_all.pdf" width="100%" height="350" frameborder="0"></iframe>
