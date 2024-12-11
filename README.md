@@ -1,33 +1,3 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Causes of Power Outages</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
-        section {
-            padding: 20px;
-            text-align: center;
-        }
-        h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .responsive-iframe {
-            width: 90%;
-            max-width: 800px;
-            aspect-ratio: 16 / 9; /* Maintains proper aspect ratio */
-            border: none;
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
 DSC 80 Project: Investigating power outages and predicting their causes
 
 ## **Introduction**
