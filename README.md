@@ -276,7 +276,7 @@ Overall, the model appears to be a reasonable first step in predicting outage ca
 
 ## Model 1
 
-We defined the Model 1 pipeline as follows:
+**We defined the Model 1 pipeline as follows:**
 
 1. Data encoding
     1. One hot encode US state, climate region and climate category based on the same reasoning as above.
@@ -291,7 +291,16 @@ We defined the Model 1 pipeline as follows:
 Number of Estimators: We experimented with the number of trees in the model (5, 10, 20, 50, 100, 200). More trees can improve accuracy but also take more time to compute.
  - **Hyperparameter Tuning**: We used GridSearchCV, which tests all possible combinations of these settings and picks the best one based on cross-validation results.
 
-Note how the only difference between this model and the base model is the *GridSearchCV* step
+Note how the only difference between this model and the base model is the *GridSearchCV* step.
+
+- **Test Performance**: 
+  - R² score: Indicates how well the model is performing on the test data. Score (0.810958904109589)
+  - F1-score (Macro Average): Measures the balance between precision and recall. Score (0.725029248014192)
+
+<iframe src="assets/model_2_confusion.pdf" width="100%" height="400" frameborder="0"></iframe>
+
+The confusion matrix above shows pretty much the exact same prediction distribution as the base model, so there is improvement to be made.
+
 
 ## Model 2 (Final Model)
 
@@ -322,7 +331,9 @@ These features were chosen to improve the model's ability to understand relation
    
 4. **Model 2 (Final Version)**: This model added feature encoding, standardization, hyperparameter tuning with grid search (same as model one) and imputation for missing values. It achieved an R² score of 0.9401 and a macro F1 score of 0.9201, showing a significant improvement over the baseline. The precision and recall scores also improved, suggesting better performance and less bias towards any particular category.
 
-5. **Confusion Matrix**: The confusion matrix for the final model versus the base model and version one showed that it made fewer misclassifications compared to the previous model, which indicates the improved accuracy and reliability of the predictions.
+<iframe src="assets/model_final_test.pdf" width="100%" height="400" frameborder="0"></iframe>
+
+6. **Confusion Matrix**: The confusion matrix for the final model versus the base model and version one showed that it made fewer misclassifications compared to the previous model, which indicates the improved accuracy and reliability of the predictions.
 
 <iframe src="assets/confusion_final.pdf" width="100%" height="400" frameborder="0"></iframe>
 
