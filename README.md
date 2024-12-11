@@ -274,7 +274,26 @@ Based on the performance on the test set, the model is decent but can be improve
 
 Overall, the model appears to be a reasonable first step in predicting outage causes, but further improvements are necessary to make it more reliable and robust for real-world applications.
 
-## Final Model
+## Model 1
+
+We defined the Model 1 pipeline as follows:
+
+1. Data encoding
+    1. One hot encode US state, climate region and climate category based on the same reasoning as above.
+    2. Ordinal encode month, since it has inherent order to it. This will allow accurate classification.
+    3. Pass rest of (numerical) features through.
+2. Pass encoded data through random forest classifier
+    1. Perform grid search (GridSearchCV) for the random forest criterion, max depth and number of estimators to tune these hyperparameters.
+  
+**Hyperparameters**:
+- **Criterion**: We tested different options like 'gini', 'entropy', and 'log_loss'. This setting controls how the decision trees measure impurity. Gini is faster and often works well in practice.
+- **Max Depth**: We tried tree depths between 5 and 25, as limiting the depth helps avoid overfitting.
+Number of Estimators: We experimented with the number of trees in the model (5, 10, 20, 50, 100, 200). More trees can improve accuracy but also take more time to compute.
+ - **Hyperparameter Tuning**: We used GridSearchCV, which tests all possible combinations of these settings and picks the best one based on cross-validation results.
+
+Note how the only difference between this model and the base model is the *GridSearchCV* step
+
+## Model 2 (Final Model)
 
 1. **One-hot encoding** of categorical variables such as US state, climate region, climate category, and NERC region: These variables have distinct categories that do not have any inherent ordinal relationships. One-hot encoding converts them into binary columns, making them suitable for machine learning models like Random Forests, which require numerical inputs.
 
@@ -299,9 +318,11 @@ These features were chosen to improve the model's ability to understand relation
 
 1. **Baseline Model**: The baseline model used basic feature encoding and a simpler pipeline. Its performance was decent but not optimized. The R² score was 0.8219, with a macro F1 score of 0.6357, indicating moderate prediction accuracy, but there was room for improvement.
 
-2. **Model 1 (Improved Version)**: This model added feature encoding, standardization, and imputation for missing values. It achieved an R² score of 0.9401 and a macro F1 score of 0.9201, showing a significant improvement over the baseline. The precision and recall scores also improved, suggesting better performance and less bias towards any particular category.
+2. **Model 1 (Improved Version)**: This model used the same architecture as the base model, with a grid search step to tune the max depth of the decision trees, the criterion of the random forest and the number of trees. It achieved an R² score of 0.8109, around the same as the base model, but it had a higher macro F1 score of 0.7250 which indicates slightly better improvement.
+   
+4. **Model 2 (Final Version)**: This model added feature encoding, standardization, hyperparameter tuning with grid search (same as model one) and imputation for missing values. It achieved an R² score of 0.9401 and a macro F1 score of 0.9201, showing a significant improvement over the baseline. The precision and recall scores also improved, suggesting better performance and less bias towards any particular category.
 
-3. **Confusion Matrix**: The confusion matrix for the final model showed that it made fewer misclassifications compared to the previous model, which indicates the improved accuracy and reliability of the predictions.
+5. **Confusion Matrix**: The confusion matrix for the final model versus the base model and version one showed that it made fewer misclassifications compared to the previous model, which indicates the improved accuracy and reliability of the predictions.
 
 <iframe src="assets/confusion_final.pdf" width="100%" height="400" frameborder="0"></iframe>
 
