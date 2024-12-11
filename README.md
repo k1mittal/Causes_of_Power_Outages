@@ -327,7 +327,7 @@ The confusion matrix above shows pretty much the exact same prediction distribut
 
 4. **Handling missing data using Iterative Imputer**: Given the presence of missing values, especially for "DEMAND.LOSS.MW" and "CUSTOMERS.AFFECTED", using an Iterative Imputer with a Random Forest Regressor helps predict and impute missing values based on the relationships observed in other features. This technique improves the robustness of the model by using information from correlated features.
 
-<iframe src="assets/MAR_bar.html" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="assets/MAR_bar.pdf" width="100%" height="400" frameborder="0"></iframe>
 
 These features were chosen to improve the model's ability to understand relationships within the data, address missing values, and handle categorical variables effectively. By encoding, imputing, and standardizing, the model can learn from the full set of features, leading to better generalization on unseen data.
 
